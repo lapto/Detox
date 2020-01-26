@@ -4,6 +4,7 @@ const ReporterBase = require('./ReporterBase');
 const RESULT_SKIPPED = chalk.yellow('SKIPPED');
 const RESULT_FAILED = chalk.red('FAIL');
 const RESULT_PENDING = chalk.yellow('PENDING');
+const RESULT_RETRY = chalk.yellow('RETRY');
 const RESULT_SUCCESS = chalk.green('OK');
 const RESULT_OTHER = 'UNKNOWN';
 
@@ -38,6 +39,7 @@ class SpecReporter extends ReporterBase {
       case 'skipped': status = RESULT_SKIPPED; break;
       case 'failed': status = RESULT_FAILED; break;
       case 'pending': status = RESULT_PENDING; break;
+      case 'retry': status = RESULT_RETRY; break;
       case 'success': status = RESULT_SUCCESS; break;
       default: status = RESULT_OTHER; break;
     }

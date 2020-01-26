@@ -32,7 +32,14 @@ class SpecReporterCircus extends CircusTestEventListenerBase {
     const testInfo = {
       description: test.name,
     };
-    this._specReporter.onTestEnd(testInfo, test.errors.length ? 'failed' : 'success');
+    if(test.errors.length){
+      this._specReporter.onTestEnd(testInfo, "failed");
+    }
+    else if(test.invocations && test.invocations > 1) {
+      this._specReporter.onTestEnd(testInfo, "retry");
+    }else {
+      this._specReporter.onTestEnd(testInfo, 'success');
+    }
   }
 
   _onTestSkip(event) {
